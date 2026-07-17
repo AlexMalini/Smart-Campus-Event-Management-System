@@ -19,7 +19,7 @@ app.config["MAIL_PASSWORD"] = "your_app_password"
 
 mail = Mail(app)
 
-app.secret_key = "smartcampus123"
+app.secret_key = "your_secret_key"
 
 @app.route("/")
 def home():
@@ -233,7 +233,7 @@ def create_event():
         cursor.execute(sql, values)
         db.commit()
         event_id = cursor.lastrowid
-        qr_data = f"http://192.168.1.6:5000/qr_attendance/{event_id}"
+        qr_data = f"http://localhost/qr_attendance/{event_id}"
 
         qr = qrcode.make(qr_data)
 
@@ -332,7 +332,6 @@ def payment_success(event_id):
 
     student_id = session["student_id"]
 
-    # Check if already registered
     cursor.execute(
         "SELECT * FROM registrations WHERE student_id=%s AND event_id=%s",
         (student_id, event_id)
@@ -348,7 +347,6 @@ def payment_success(event_id):
         </script>
         """
 
-    # Register student after payment
     cursor.execute(
         """
         INSERT INTO registrations (student_id, event_id, attendance)
@@ -724,12 +722,10 @@ def verify_otp():
 
         entered_otp = request.form["otp"]
 
-        # Check whether OTP has expired
         if time.time() - session.get("otp_time", 0) > 300:
             flash("OTP has expired. Please request a new OTP.")
             return redirect("/forgot_password")
 
-        # Check OTP
         if entered_otp == session.get("reset_otp"):
 
             return redirect("/reset_password")
