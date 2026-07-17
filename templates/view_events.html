@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>View Events</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+<div class="card shadow p-4">
+
+<h2 class="text-center text-primary">
+All Events
+</h2>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+<th>Event Name</th>
+<th>Type</th>
+<th>Date</th>
+<th>Venue</th>
+<th>Organizer</th>
+<th>Registration Fee</th>
+<th>Participants</th>
+<th>QR Code</th>
+<th>Edit</th>
+<th>Delete</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for event in events %}
+
+<tr>
+
+<td>{{ event[0] }}</td>
+<td>{{ event[1] }}</td>
+<td>{{ event[5] }}</td>
+<td>{{ event[2] }}</td>
+<td>{{ event[3] }}</td>
+<td>{{ event[6] }}</td>
+<td>₹{{ event[8] }}</td>
+<td>{{ event[7] }}</td>
+
+
+<td>
+
+<a href="/view_qr/{{ event[0] }}" class="btn btn-success btn-sm">
+Display Attendence QR
+</a>
+
+</td>
+
+<td>
+
+<a href="/edit_event/{{ event[0]}}" class="btn btn-warning btn-sm">
+Edit
+</a>
+
+</td>
+
+<td>
+
+<a href="/delete_event/{{ event[0] }}" class="btn btn-danger btn-sm">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+<a href="/admin_dashboard" class="btn btn-secondary">
+Back
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

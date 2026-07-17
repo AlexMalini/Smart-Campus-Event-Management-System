@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Campus Event Management System</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+.card{
+    width:520px;
+    padding:40px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.95);
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    text-align:center;
+}
+
+h1{
+    color:#0d6efd;
+    font-weight:bold;
+}
+
+.btn{
+    width:90%;
+    margin:10px auto;
+    padding:12px;
+    font-size:18px;
+    font-weight:bold;
+    border-radius:10px;
+    display:block;
+}
+
+</style>
+
+</head>
+
+<body class="homepage">
+
+<nav class="navbar-custom">
+
+    <div class="left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="nav-logo">
+    </div>
+
+    <div class="center">
+
+    <h3>SMART CAMPUS EVENT MANAGEMENT SYSTEM</h3>
+
+    <small>Anna University - University College of Engineering, Arni</small>
+
+    <div class="menu">
+
+        <a href="/">Home</a>
+
+        <a href="/about">About</a>
+
+        <a href="/events">Events</a>
+
+        <a href="/contact">Contact Us</a>
+
+    </div>
+
+</div>
+
+    <div class="right">
+        {{ current_date }}
+    </div>
+
+</nav>
+
+<div class="container text-center main-centent">
+</div>
+
+<div class="container mt-5 text-center">
+
+    <h1 class="text-white">
+        📅 College Events
+    </h1>
+
+    <p class="text-white">
+        Explore and register for upcoming college events.
+    </p>
+
+</div>
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <input type="text"
+       id="searchEvent"
+       class="form-control form-control-lg"
+       placeholder="🔍 Search Events...">
+
+        </div>
+
+    </div>
+
+</div>
+
+<p id="noEvent"
+   class="text-center text-white mt-3"
+   style="display:none; font-size:20px;">
+   ❌ No matching event found.
+</p>
+
+<div class="container mt-5">
+
+    <div class="row">
+
+{% for event in events %}
+
+<div class="col-md-4 mb-4 event-card">
+
+    <div class="card shadow h-100">
+
+        <div class="card-body">
+
+            <span class="badge bg-success">
+                {{ event[5] }}
+            </span>
+
+            <h4 class="mt-3 event-name">
+                {{ event[1] }}
+            </h4>
+
+            <p><strong>Date:</strong> {{ event[2] }}</p>
+
+            <p><strong>Venue:</strong> {{ event[3] }}</p>
+
+            <p>{{ event[4] }}</p>
+
+            <p><strong>Organizer:</strong> {{ event[6] }}</p>
+
+            <p><strong>Fee:</strong> ₹{{ event[8] }}</p>
+
+            <p><strong>Participants:</strong> {{ event[7] }}</p>
+
+            <a href="/student_login"
+               class="btn btn-primary w-100">
+               Register
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+</div>
+
+<footer class="footer">
+
+    <div class="footer-left">
+        © 2026 Smart Campus Event Management System
+    </div>
+
+    <div class="footer-center">
+        Developed by Final Year CSE Students<br>
+        University College of Engineering, Arni
+    </div>
+
+    <div class="footer-right">
+        Secure | Reliable | Efficient
+    </div>
+
+</footer>
+
+<script>
+
+const searchBox = document.getElementById("searchEvent");
+const cards = document.querySelectorAll(".event-card");
+const noEvent = document.getElementById("noEvent");
+
+searchBox.addEventListener("keyup", function(){
+
+    let value = searchBox.value.toLowerCase();
+
+    let found = false;
+
+    cards.forEach(function(card){
+
+        let name = card.querySelector(".event-name").innerText.toLowerCase();
+
+        if(name.includes(value)){
+            card.style.display = "";
+            found = true;
+        }
+        else{
+            card.style.display = "none";
+        }
+
+    });
+
+    if(found){
+        noEvent.style.display = "none";
+    }
+    else{
+        noEvent.style.display = "block";
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Campus Event Management System</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+.login-card{
+    width:520px;
+    padding:40px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.95);
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    text-align:center;
+}
+
+h1{
+    color:#410370;
+    font-weight:bold;
+}
+
+.btn{
+    width:90%;
+    margin:10px auto;
+    padding:12px;
+    font-size:18px;
+    font-weight:bold;
+    border-radius:10px;
+    display:block;
+}
+
+</style>
+
+</head>
+
+<body class="homepage">
+
+<nav class="navbar-custom">
+
+    <div class="left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="nav-logo">
+    </div>
+
+    <div class="center">
+
+    <h3>SMART CAMPUS EVENT MANAGEMENT SYSTEM</h3>
+
+    <small>Anna University - University College of Engineering, Arni</small>
+
+    <div class="menu">
+
+        <a href="/">Home</a>
+
+        <a href="/about">About</a>
+
+        <a href="/events">Events</a>
+
+        <a href="/contact">Contact Us</a>
+
+    </div>
+
+</div>
+
+    <div class="right">
+
+    <a href="/admin_login"
+       class="btn btn-outline-light btn-sm mb-2"
+       style="width:auto; padding:6px 15px;">
+       🔒 Admin
+    </a>
+
+    <br>
+
+    {{ current_date }}
+
+</div>
+
+</nav>
+
+<div class="container text-center main-centent">
+</div>
+
+<div class="welcome-section">
+
+    <h1 style="color:white; font-size:50px; font-weight:bold; text-shadow:3px 3px 8px black;">
+    Welcome
+</h1>
+
+    <p class="mt-3">
+        Manage campus events efficiently with online registration, QR-based attendance,
+        automated certificate generation and real-time analytics.
+    </p>
+
+    <div class="mt-4">
+
+        <span class="badge bg-primary p-2 m-1">📅 Easy Event Registration</span>
+
+        <span class="badge bg-success p-2 m-1">📱 QR Attendance</span>
+
+        <span class="badge bg-warning text-dark p-2 m-1">📊 Live Analytics</span>
+
+        <span class="badge bg-danger p-2 m-1">📜 Digital Certificates</span>
+
+    </div>
+
+</div>
+
+<div class="login-card mx-auto">
+
+<h3 class="text-primary">
+Student & Admin Portal
+</h3>
+
+<p class="text-muted">
+Please select an option below to continue
+</p>
+
+<hr>
+
+<a href="/student_login" class="btn btn-primary portal-btn">
+🎓 Student Login
+</a>
+
+<a href="/register" class="btn btn-success portal-btn">
+📝 Student Registration
+</a>
+
+</div>
+
+<div class="container-fluid px-5 mt-5">
+
+<h2 class="text-center text-white mb-4">
+Why Choose Our System?
+</h2>
+
+<div class="row justify-content-center gx-4">
+
+<div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+
+<div class="card shadow text-center p-3">
+
+<h4>📅</h4>
+
+<h5>Event Management</h5>
+
+<p>Create and manage college events easily.</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+
+<div class="card shadow text-center p-3">
+
+<h4>📱</h4>
+
+<h5>QR Attendance</h5>
+
+<p>Fast and secure attendance using QR codes.</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+
+<div class="card shadow text-center p-3">
+
+<h4>📊</h4>
+
+<h5>Analytics</h5>
+
+<p>View registrations and event statistics.</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+
+<div class="card shadow text-center p-3">
+
+<h4>📜</h4>
+
+<h5>Certificates</h5>
+
+<p>Automatic certificate generation for participants.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="container-fluid px-5 mt-5">
+
+<h2 class="text-center text-white mb-5">
+📊 System Statistics
+</h2>
+
+<div class="container mt-4 mb-5">
+
+    <div class="row text-center justify-content-center gx-4">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card shadow p-3">
+                <h2>👨‍🎓</h2>
+                <h1>{{ total_students }}</h1>
+                <p>Total Students</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow p-3">
+                <h2>📅</h2>
+                <h1>{{ total_events }}</h1>
+                <p>Total Events</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow p-3">
+                <h2>📝</h2>
+                <h1>{{ total_registrations }}</h1>
+                <p>Registrations</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow p-3">
+                <h2>📜</h2>
+                <h1>{{ total_certificates}}</h1>
+                <p>Certificates</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+<footer class="footer">
+
+    <div class="footer-left">
+        © 2026 Smart Campus Event Management System
+    </div>
+
+    <div class="footer-center">
+        Developed by Final Year CSE Students<br>
+        University College of Engineering, Arni
+    </div>
+
+    <div class="footer-right">
+        Secure | Reliable | Efficient
+    </div>
+
+</footer>
+
+</body>
+
+</html>

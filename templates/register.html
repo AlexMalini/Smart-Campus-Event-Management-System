@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Registration</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+background:#f4f7fc;
+}
+
+.card{
+width:550px;
+margin:auto;
+margin-top:40px;
+padding:30px;
+border-radius:15px;
+box-shadow:0px 0px 10px lightgray;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2 class="text-center text-primary">
+Student Registration
+</h2>
+
+<p class="text-muted text-center mb-4">
+Register to participate in Smart Campus Events
+</p>
+
+<form method="POST">
+
+<input type="text" class="form-control mt-3"
+name="name"
+placeholder="Full Name" required>
+
+<input type="text" class="form-control mt-3"
+name="register_no"
+placeholder="Register Number" required>
+
+<select class="form-control mt-3"
+name="department" required>
+
+<option>CSE</option>
+<option>IT</option>
+<option>ECE</option>
+<option>EEE</option>
+<option>Mechanical</option>
+<option>Civil</option>
+<option>MBA</option>
+
+</select>
+
+<select class="form-control mt-3"
+name="year" required>
+
+<option>1st Year</option>
+<option>2nd Year</option>
+<option>3rd Year</option>
+<option>4th Year</option>
+
+</select>
+
+<input type="email"
+class="form-control mt-3"
+name="email"
+placeholder="Email Address" required>
+
+<input type="password"
+class="form-control mt-3"
+name="password"
+placeholder="Password" required>
+
+<input type="password"
+name="confirm_password"
+class="form-control form-control-lg mt-3"
+placeholder="Confirm Password"
+required>
+
+<button class="btn btn-primary btn-lg w-100 mt-4">
+Register
+</button>
+
+<div class="text-center mt-3">
+
+<a href="/"
+class="btn btn-outline-secondary">
+
+⬅ Back to Home
+
+</a>
+
+</div>
+
+<p class="text-center mt-3">
+
+Already have an account?
+
+<a href="/student_login">
+
+Login Here
+
+</a>
+
+</p>
+
+<hr>
+
+<p class="text-center text-muted mb-0">
+© 2026 Smart Campus Event Management System
+</p>
+
+</form>
+
+</div>
+
+</body>
+</html>

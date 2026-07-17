@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+<h2 class="text-center text-primary mb-4">
+📊 Smart Campus Analytics Dashboard
+</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+<div class="card bg-primary text-white text-center p-3 shadow">
+<h4>Total Students</h4>
+<h2>{{ total_students }}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card bg-success text-white text-center p-3 shadow">
+<h4>Total Events</h4>
+<h2>{{ total_events }}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card bg-warning text-dark text-center p-3 shadow">
+<h4>Registrations</h4>
+<h2>{{ total_registrations }}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card bg-danger text-white text-center p-3 shadow">
+<h4>Present</h4>
+<h2>{{ total_present }}</h2>
+</div>
+</div>
+
+</div>
+
+<br>
+
+<div class="container mt-5">
+
+    <div class="card p-4 shadow">
+
+        <h4 class="text-center mb-4">
+            📊 Event Registrations
+        </h4>
+
+        <div style="width:700px; height:350px; margin:auto;">
+           <canvas id="registrationChart"></canvas>
+        </div>
+
+        <br><br>
+
+<h4 class="text-center">
+🥧 Attendance Overview
+</h4>
+
+<div style="width:350px; height:350px; margin:auto;">
+    <canvas id="attendancePieChart"></canvas>
+</div>
+
+    </div>
+
+</div>
+
+<div class="text-center">
+<a href="/admin_dashboard" class="btn btn-secondary">
+Back
+</a>
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+window.onload = function () {
+
+    // Bar Chart
+    const ctx = document.getElementById("registrationChart");
+
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Students", "Events", "Registrations", "Present"],
+            datasets: [{
+                label: "Count",
+                data: [
+                    Number("{{ total_students }}"),
+                    Number("{{ total_events }}"),
+                    Number("{{ total_registrations }}"),
+                    Number("{{ total_present }}")
+                ],
+                backgroundColor: [
+                    "#0d6efd",
+                    "#198754",
+                    "#ffc107",
+                    "#dc3545"
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Pie Chart
+    const pieCtx = document.getElementById("attendancePieChart");
+
+    new Chart(pieCtx, {
+        type: "pie",
+        data: {
+            labels: ["Present", "Absent"],
+            datasets: [{
+                data: [
+                    Number("{{ total_present }}"),
+                    Number("{{ total_absent }}")
+                ],
+                backgroundColor: [
+                    "#198754",
+                    "#dc3545"
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: "bottom"
+                }
+            }
+        }
+    });
+
+}
+</script>
+
+</body>
+</html>
